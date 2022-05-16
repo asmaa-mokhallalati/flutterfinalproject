@@ -31,8 +31,11 @@ class LoginState extends State<Login>{
           email: email,
           password: pass
       );
+      if(!credential.user.email.isEmpty){
+        return HomeClient();
+      }
       log('data: $credential');
-      return HomeClient();
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
