@@ -40,9 +40,9 @@ class CreateAccountState extends State<CreateAccount>{
         email: this.email,
         password: this.pass,
       );
-      if(credential==true){
+
         return HomeClient();
-      }
+
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');

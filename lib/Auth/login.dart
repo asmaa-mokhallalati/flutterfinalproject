@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutterproject/Auth/create_account.dart';
 import 'package:flutterproject/Client/home_client.dart';
@@ -21,6 +23,7 @@ class LoginState extends State<Login>{
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   saveMyForm() async {
+    log('data: clickkk');
     if(!formKey.currentState.validate()){return;}
     formKey.currentState.save();
     try {
@@ -28,9 +31,8 @@ class LoginState extends State<Login>{
           email: email,
           password: pass
       );
-      if(credential!=true){
-        return HomeClient();
-      }
+      log('data: $credential');
+      return HomeClient();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -38,9 +40,6 @@ class LoginState extends State<Login>{
         print('Wrong password provided for that user.');
       }
     }
-
-
-      return HomeMerchant();
 
   }
 
@@ -90,8 +89,9 @@ class LoginState extends State<Login>{
                   // btn login
                   Container(width: 300,color: Colors.blue,child: FlatButton(
                     onPressed: (){
-                      return AddProduct();
-                      //saveMyForm();
+                      log('data: clickkkedd');
+                      //return AddProduct();
+                      return saveMyForm();
                       },
                     child: Text('Login',style: TextStyle(color: Colors.white)),),),
                   SizedBox(height: 20,),

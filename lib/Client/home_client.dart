@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterproject/Auth/login.dart';
 import '../Classes/Product.dart';
@@ -40,6 +41,7 @@ class HomeClientState extends State<HomeClient> {
           onPressed: (){
             Navigator.pushReplacement(context, MaterialPageRoute(
                 builder: (context){
+                   FirebaseAuth.instance.signOut();
                 return Login();
                 }
               ));
